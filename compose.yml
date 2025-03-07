@@ -6,9 +6,11 @@
 version: '3'
 services:
   openwebui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:0.5.18
     ports:
-      - "3000:8080"
+      - "7000:8080"
+    environment:
+      - WEBUI_AUTH=False
     volumes:
       - open-webui:/app/backend/data
     deploy:
