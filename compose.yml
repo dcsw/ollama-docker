@@ -10,17 +10,20 @@ services:
     image: ghcr.io/open-webui/open-webui:latest
     ports:
       - "7000:8080"
-    environment:
-      - WEBUI_AUTH=False
     volumes:
       - open-webui:/app/backend/data
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    environment:
+      - WEBUI_AUTH=False
+      # - OLLAMA_BASE_URL:http://host.docker.internal:11434
+      - OLLAMA_ENABLE=false
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
 
 volumes:
   open-webui:
